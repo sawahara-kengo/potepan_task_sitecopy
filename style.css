@@ -1,0 +1,353 @@
+/* 全てに適用*/
+* {
+    box-sizing: border-box;/*要素の寸法を扱いやすくする*/
+    word-break: break-all;/*テキストがコンテンツ内に収まるよう改行し、枠が適切に広がる*/
+}
+    /*------------------------------------------------------------*/
+    /*サイトの要素全てにおける設定*/
+    body {
+        color: #333;/*目に優しい黒*/
+        font-family: "游ゴシック","YuGothic","ヒラギノ角ゴ Pro W3",
+                    "Hiragino Kaku Gothic Pro","メイリオ","Meiryo",
+                    "ＭＳ Ｐゴシック","MS PGothic",sans-serif;/*適用するフォント(上から試行される)*/
+        font-size: 14px;
+        font-weight: 500;/*700から太字*/
+        -webkit-font-smoothing: antialiased;/*ChromeやSafariなどで文字を滑らかに表示する*/
+        margin: 0;/*デフォルトのマージンを0にする*/
+        padding: 0;/*デフォルトのパディングを0にする*/
+    }
+        /*------------------------------------------------------------*/
+        /*ヘッダーエリアにおける設定*/
+        .header_area {
+            width: 100%;/*bodyに対して100%の幅をとる*/
+            box-shadow: 0px 15px 20px 0px rgba(0,0,0,.05);/*影をつける(x軸、y軸、ぼかし具合、拡散具合、rgbと透過度)*/
+            position: fixed;/*位置を固定*/
+            z-index: 10;/*最前列に配置*/
+            background-color: #fff;/*最前列に配置*/
+            height: 48px;/*高さ設定*/
+            display: grid;/*エリアをグリッドコンテナ・コンテナをグリッドアイテムにする*/
+        }
+            /*----------タブレット表示(幅428px以上)-----------*/
+        @media screen and (min-width:428px) {
+            .header_area {
+                height: 70px;/*高さ設定*/
+                padding: 15px 0;/*上下パディング追加*/
+            }
+        }
+            /*----------PC表示(幅768px以上)-----------*/
+        @media screen and (min-width:768px) {
+            .header_area {
+                padding: 0;/*パディングを再び無くす*/
+            }
+        }
+                /*------------------------------------------------------------*/
+                /*ヘッダーコンテナにおける設定*/
+                .header_container {
+                    display: flex;/*ヘッダーロゴとヘッダーナビをフレックスアイテムにする*/
+                    justify-content: space-between;/*コンテナに空きがある際にアイテムを両端に寄せて均等配置する*/                    
+                    max-width: 100%;/*画面サイズに応じて最大幅で表示*/
+                    margin: 0 16px;/*左右のマージン設定*/
+                    position: relative;/*ヘッダーロゴとヘッダーナビをコンテナを基準に配置できるようにする*/
+                }
+                    /*----------タブレット/PC表示(幅768px以上)-----------*/
+                @media screen and (min-width:768px) {
+                    .header_container {
+                        margin: 0 36px;/*左右のマージン設定*/
+                    }
+                }
+                
+                    /*ヘッダーナビコンテナにおける設定*/
+                    .header_nav {
+                        display: flex;/*ロゴ・ハンバーガー・リストのフレックスコンテナとなる*/
+                    }
+
+                        /*------------------------------------------------------------*/
+                        /*ヘッダーロゴにおける設定*/
+                        .header_logo {
+                            align-self: center;
+                            transition: all .2s;/*下記のホバー設定を滑らかにする(0.2秒で変化)*/
+                        }
+                        .header_logo:hover {/*ホバー設定*/
+                            opacity: .8;
+                        }
+                            .HeaderLogo_pc {
+                                display: none;/*PC表示用のロゴを非表示*/
+                            }
+                            .HeaderLogo_sp {
+                                display: block;/*ブロック要素にする*/
+                                height: 16px;/*画像の高さ設定*/
+                                width: auto;/*コンテンツ分だけの幅をとる*/
+                            }
+                            /*----------PC表示(幅768px以上)-----------*/
+                            @media screen and (min-width:768px){
+                                .HeaderLogo_sp {
+                                    display: none;/*スマホ表示用のロゴを非表示*/ 
+                                }
+                                .HeaderLogo_pc {
+                                    display: block;/*ブロック要素にする・再表示*/                                
+                                    height: 20px;/*画像の高さ設定*/                                
+                                    width: auto;/*コンテンツ分だけの幅をとる*/
+                                }
+                            }
+                        /*------------------------------------------------------------*/
+                        /*---ハンバーガーメニューの設定---*/
+                        .HeaderNav_responsive {
+                            display: block;/*ブロック要素にする*/                            
+                            position: relative;/*ハンバーガーラインをハンバーガーメニューコンテナ基準で配置できるようにする*/                           
+                            height: 12px;/*ハンバーガーメニューのコンテナ高さ設定*/
+                            width: 18px;/*ハンバーガーメニューのコンテナ横幅設定*/
+                            margin: auto;/*上下左右中央揃え*/
+                            z-index: 100;/*最前面に配置*/
+                        }
+                            /*----------タブレット表示(幅428px以上)-----------*/
+                        @media screen and (min-width:428px) {
+                            .HeaderNav_responsive {
+                                height: 17px;/*ハンバーガーメニューのコンテナ高さ設定*/
+                                width: 24px;/*ハンバーガーメニューのコンテナ横幅設定*/        
+                            }
+                        }
+                            /*----------PC表示(幅1080px以上)-----------*/
+                        @media screen and (min-width:1080px) {
+                            .HeaderNav_responsive {
+                                display: none;/*非表示*/
+                            }
+                        }
+
+                                /*---ハンバーガーラインの設定---*/
+                                .HeaderNavResponsive_hamburger-line {
+                                    display: block;/*ブロック要素にする*/                    
+                                    width: 100%;/*ハンバーガーコンテナに対して100%の幅をとる*/                                    
+                                    background-color: #a2a2a4;/*ブロックに色をつけて線のようにする*/                                    
+                                    height: 2px;/*高さをつけて目に見えるようにする*/                                    
+                                    border-radius: 10px;/*線の端を丸くする*/                                    
+                                    position: absolute;/*ハンバーガーメニューコンテナを基準に配置を可能にする*/
+                                    top: 50%;
+                                }
+                                .HeaderNavResponsive_hamburger-line:first-child {
+                                    top: 0;
+                                }
+                                .HeaderNavResponsive_hamburger-line:last-child {
+                                    top: 100%;
+                                }
+
+                        /*---リストメニュー設定---*/
+                        .HeaderNav_list {
+                            display: none;
+                            padding: 0;
+                        }
+                            /*----------PC表示(幅1080px以上)-----------*/
+                        @media screen and (min-width:1080px) {
+                            .HeaderNav_list {                        
+                                display: flex;/*liを横並びにする*/                                
+                                align-items: center;/*liを上下中央揃えにする*/                                
+                                list-style: none;/*黒丸を外す*/                                
+                                justify-content: space-between;/*liをul内にて両端に寄せて均等配置する*/
+                            }
+                        }
+                                /*liの設定*/
+                                .HeaderNavList_item {                                    
+                                    margin-right: 45px;/*右側マージン設定*/
+                                    transition: all .2s;/*ホバーを滑らかに*/
+                                }
+                                .HeaderNavList_item:last-child {
+                                    margin: 0;/*ボタンのみマージン無し*/
+                                }
+                                .HeaderNavList_item:hover {/*ホバー*/
+                                    opacity: .8;
+                                }
+                                    /*liの中身における設定*/
+                                    .HeaderNavListItem_link {                                    
+                                        display: block;/*ブロック要素にする*/                                        
+                                        text-decoration: none;/*リンクの下線を消す*/                                        
+                                        color: #333;/*テキストの色を優しい黒に設定*/
+                                    }
+                                        /*フォントの異なるフレーズを改行する*/
+                                    .HeaderNavListItem_link span {
+                                        display: block;/*改行のため文節をブロック要素にする*/                                        
+                                        font-weight: 700;/*太字にする*/                                    
+                                        text-align: center;/*テキストを左右中央揃えにする*/
+                                    }
+                                        /*---------------1行目の設定----------------*/
+                                    .HeaderNavListItem_link span:first-child {                                        
+                                        font-family: "Lato",sans-serif;/*フォント指定*/                        
+                                        font-size: 12px;/*フォントサイズ指定*/                                        
+                                        line-height: 14.4px;/*行の高さを指定(14.4-12=2.2pxのスペースが上下に生まれる)*/
+                                    }
+                                        /*---------------2行目の設定----------------*/
+                                    .HeaderNavListItem_link span:last-child {                                        
+                                        font-size: 10px;/*フォントサイズ指定*/
+                                    }
+                                    /*ボタンの設定*/
+                                    .HeaderNavListItem_button {                                        
+                                        display: flex;/*justify-contentを有効化*/
+                                        justify-content: center;/*テキストを左右中央揃え*/
+                                        align-items: center;/*テキストを上下中央揃え*/
+                                        background-color: #f79214;/*ボタンの色*/                                        
+                                        border-radius: 38px;/*ボタンの角を丸くする*/                                    
+                                        color: #fff;/*テキストを白にする*/                                        
+                                        text-decoration: none;/*下線を消す*/                                    
+                                        font-size: 12px;/*フォントサイズ指定*/                                                                            
+                                        font-weight: 700;/*太字にする*/                                        
+                                        width: 100%;/*liに対して100%の幅をとる*/                                        
+                                        height: 40px;/*ボタンの高さを指定*/                                        
+                                        padding: 0 20px;/*パディングでボタンを大きく*/                                        
+                                    }
+
+    /*------------------------------------------------------------*/
+    /*メインエリアにおける設定*/
+    main {
+        padding-top: 48px;/*上部のパディング*/
+    }
+        /*----------スマホ・タブレット表示(幅428px以上)-----------*/
+        @media screen and (min-width:428px) {
+            main {
+               padding-top: 52px;
+            }
+        }
+        /*----------タブレット・PC表示(幅768px以上)-----------*/
+        @media screen and (min-width:768px) {
+            main {
+                padding-top: 60px;
+            }
+        }
+        /*----------PC表示(幅1080px以上)-----------*/
+        @media screen and (min-width:1080px) {
+            main {
+               padding-top: 70px;
+            }
+        }
+            /*----メインエリア-FVコンテナの設定----*/
+            .FirstView {
+                position: relative;/*コンテナ内のアイテム(画像・テキスト)をコンテナ基準に配置できるよう設定*/
+                height: fit-content;/*コンテンツに合わせて伸縮するが、親要素(メインエリア)からはみ出ないようにする*/
+            }
+                /*----------タブレット・PC表示(幅768px以上)-----------*/
+            @media screen and (min-width:768px) {
+                .FirstView {
+                    height: 739px;/*タブレット・PC表示の際におけるコンテナ高さ設定*/
+                }
+            }
+                    /*背景画像の設定*/
+                    .FirstView_back-img {                        
+                        display: none;/*タブレット・PC表示用の背景を非表示*/
+                    }
+                    .FirstView_back-img_responsive {                        
+                        display: block;/*ブロック要素にする*/                        
+                        margin-bottom: 7px;/*下のテキストと離すためマージンを設定*/                    
+                        width: 100%;/*FVコンテナいっぱいの幅をとる*/
+                    }
+                        /*----------タブレット・PC表示(幅768px以上)-----------*/
+                    @media screen and (min-width:768px) {                        
+                        .FirstView_back-img_responsive {
+                            display: none;/*レスポンシブ(スマホ表示用)の背景を非表示*/
+                        }
+                        .FirstView_back-img {                
+                            display: block;/*ブロック要素にする・再表示*/                            
+                            position: absolute;/*コンテナ基準で配置指示をする*/                            
+                            z-index: -1;/*背面に配置*/
+                        }
+                            .FirstView_top-left-img {/*左上三角*/
+                                top: -70px;
+                                left: 0;
+                            }
+                            .FirstView_bottom-right-img {/*右下三角*/
+                                bottom: 70px;
+                                right: 0;
+                            }                            
+                            .FirstView_oval-img {/*楕円*/
+                                top: 84px;
+                                left: -70px;
+                            }                            
+                            .FirstView_main-img {/*メインビジュアル*/
+                                top: -70px;
+                                right: 0;
+                                width: 775px;
+                            }
+                    }
+                    /*------------------------------------------------------------*/
+                    /*メインコンテナの設定*/
+                    .main_container {                        
+                        max-width: none;/*コンテンツの幅を制限しない*/                        
+                        padding: 0 16px 20px 16px;/*コンテナのパディング設定*/                        
+                        margin-left: auto;/*コンテナの左マージン設定*/
+                        margin-right: auto;/*コンテナの右マージン設定*/
+                    }
+                        /*------タブレット表示:768px以上------*/
+                    @media screen and (min-width:768px) {
+                        .main_container {
+                            padding: 219px 36px 0 36px;/*パディング設定*/
+                        }
+                    }
+                        /*------PC表示:1080px以上------*/
+                    @media screen and (min-width:1080px) {
+                        .main_container {
+                            max-width: 1040px;
+                            padding: 219px 0 0 0 ;                        
+                        }
+                    }    
+                            /*------------------------------------------------------------*/            
+                            /*コンテンツエリアの設定*/
+                            .main_content {                                
+                                position: relative;/*コンテンツの中身をコンテンツエリア基準で配置するため設定*/                                
+                                width: fit-content;/*コンテンツに合わせて伸縮するが、親要素(メインコンテナ)からはみ出ないようにする*/
+                            }
+                                /*キャッチコピー*/
+                                .MainContent_catch-copy {                                    
+                                    font-family: "Lato",sans-serif;
+                                    font-weight: 800;
+                                    font-size: 22px;
+                                    line-height: 36px;/*行間*/
+                                    margin-top: 0;
+                                    margin-bottom: 16px;/*ボタンとの間隔*/                                    
+                                    width: fit-content;/*コンテンツに合わせて伸縮するが、親要素(コンテンツエリア)からはみ出ないようにする*/                                    
+                                    position: relative;/*ポップイメージをキャッチコピー基準に配置できるようにする*/
+                                }
+                                /*-----タブレット・PC表示設定:768px以上-----*/
+                                @media screen and (min-width:768px) {
+                                    .MainContent_catch-copy {
+                                        font-size: 42px;
+                                        line-height: 63px;/*行間*/
+                                    }
+                                }
+                                        /*ポップイメージ*/
+                                        .MainContent_pop-img {
+                                            position: absolute;
+                                            height: 102px;/*画像の高さ*/
+                                            width: 102px;/*画像の幅*/
+                                            top: -20px;/*画像の縦配置*/
+                                            right: -85px;/*画像の横配置*/
+                                        }
+                                        /*-----タブレット・PC表示設定:768px以上-----*/
+                                        @media screen and (min-width:768px) {
+                                            .MainContent_pop-img {
+                                                height: 204px;/*画像の高さ*/
+                                                width: 204px;/*画像の幅*/
+                                                top: -105px;/*画像の縦配置*/
+                                                right: -160px;/*画像の横配置*/
+                                            }
+                                        }
+                                
+                                /*ボタン*/
+                                .MainContent_button {
+                                    background-color: #f79214;
+                                    border-radius: 38px;
+                                    color: #fff;
+                                    display: flex;/*テキスト配置を調整するために設定*/
+                                    justify-content: center;/*テキストを左右中央揃え*/                        
+                                    align-items: center;/*テキストを上下中央揃え*/                        
+                                    height: 64px;
+                                    text-decoration: none;
+                                    font-size: 16px;
+                                    font-weight: 700;
+                                    margin-bottom: 16px;/*キャプションとの間隔*/
+                                    transition: all .2s;
+                                }
+                                .MainContent_button:hover {/*ホバー*/
+                                    opacity: .8;
+                                }
+
+                                /*キャプション*/
+                                .MainContent_caption {
+                                    font-size: 12px;
+                                    line-height: 16px;/*行間*/
+                                }
